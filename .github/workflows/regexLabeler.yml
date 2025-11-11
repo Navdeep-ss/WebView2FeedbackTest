@@ -27,3 +27,15 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         assignees: ambikakunnath
         includeLabels: regression
+    - name: Sync Regressions to ADO
+      uses: Navdeep-ss/github-actions-issue-to-work-item@simple-sync-azurecli-2
+      env:
+        github_token: "${{ secrets.GITHUB_TOKEN }}"
+      with:
+        label: 'regression'
+        ado_organization: 'microsoft'
+        ado_project: 'Edge'
+        ado_area_path: 'Edge\Web Experience\WebView2'
+        ado_tags: 'WV2SupportAutoFile'
+        ado_gh_closed_tag: 'WV2_GitHub_Closed'
+        update_issue_body: 'false'
