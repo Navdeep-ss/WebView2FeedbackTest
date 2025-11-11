@@ -4,6 +4,7 @@ on:
     types: [opened, edited]
 
 permissions:
+  id-token: write
   issues: write
   contents: read
 
@@ -28,6 +29,12 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         assignees: ambikakunnath
         includeLabels: regression
+  
+  sync:
+    needs: triage
+    runs-on: windows-latest
+    name: Sync to Azure DevOps
+    steps:
     - name: Sync tracked bugs to ADO
       uses: Navdeep-ss/github-actions-issue-to-work-item@simple-sync-azurecli-2
       env:

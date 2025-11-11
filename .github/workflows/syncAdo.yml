@@ -3,8 +3,6 @@ name: Sync ADO Issue
 on:
   issues:
     types: [labeled, closed, reopened]
-  repository_dispatch:
-    types: [trigger-sync]
 
 permissions:
   id-token: write
